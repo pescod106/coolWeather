@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pescod.coolweather.R;
+import com.pescod.coolweather.service.AutoUpdateService;
 import com.pescod.coolweather.util.HttpCallbackListener;
 import com.pescod.coolweather.util.HttpUtil;
 import com.pescod.coolweather.util.Utility;
@@ -162,8 +163,11 @@ public class WeatherActivity extends Activity {
         temp2Text.setText(preferences.getString("temp2",""));
         weatherDespText.setText(preferences.getString("weather_desp",""));
         publishText.setText("今天"+preferences.getString("publish_time","")+"发布");
-        currentDateText.setText(preferences.getString("current_date",""));
+        currentDateText.setText(preferences.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startActivity(intent);
     }
 }
