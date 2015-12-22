@@ -86,7 +86,7 @@ public class WeatherActivity extends Activity {
     public void btn_refesh(View view){
         publishText.setText("同步中...");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
-        String weatherCode = preferences.getString("country_code","");
+        String weatherCode = preferences.getString("weather_code","");
         if(!TextUtils.isEmpty(weatherCode)){
             queryWeatherInfo(weatherCode);
         }
@@ -94,7 +94,7 @@ public class WeatherActivity extends Activity {
 
     /**
      * 查询县级代号所对应的天气代号。
-     * @param weatherCode
+     * @param countyCode
      */
     private void queryWeatherCode(String countyCode){
         String address = "http://www.weather.com.cn/data/list3/city" +
@@ -168,6 +168,6 @@ public class WeatherActivity extends Activity {
         cityNameText.setVisibility(View.VISIBLE);
 
         Intent intent = new Intent(this, AutoUpdateService.class);
-        startActivity(intent);
+        startService(intent);
     }
 }
